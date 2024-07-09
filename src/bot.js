@@ -76,6 +76,174 @@ if (clientID && clientSecret) {
                 port: 80,
                 password: "techpoint"
             },
+            {
+                host: "lavalink.teramont.net",
+                port: 443,
+                password: "eHKuFcz67k4lBS64",
+                secure: true
+            },
+            {
+                host: "lava-v3.ajieblogs.eu.org",
+                port: 443,
+                password: "https://dsc.gg/ajidevserver",
+                secure: true
+            },
+            {
+                host: "lava-v3.ajieblogs.eu.org",
+                port: 80,
+                password: "https://dsc.gg/ajidevserver",
+                secure: false
+            },
+            {
+                host: "node2.alfari.id",
+                port: 6010,
+                password: "youshallnotpass",
+                secure: false
+            },
+            {
+                host: "us1.lavalink.creavite.co",
+                port: 20080,
+                password: "auto.creavite.co",
+                secure: false
+            },
+            {
+                host: "node2.alfari.id",
+                port: 6013,
+                password: "youshallnotpass",
+                secure: false
+            },
+            {
+                host: "85.88.163.80",
+                port: 3128,
+                password: "saher.inzeworld.com",
+                secure: false
+            },
+            {
+                host: "eu-lavalink.lexnet.cc",
+                port: 2333,
+                password: "lexn3tl@val!nk",
+                secure: false
+            },
+            {
+                host: "oce-lavalink.lexnet.cc",
+                port: 2333,
+                password: "lexn3tl@val!nk",
+                secure: false
+            },
+            {
+                host: "lava1.horizxon.tech",
+                port: 443,
+                password: "horizxon.tech",
+                secure: true
+            },
+            {
+                host: "lava3.horizxon.tech",
+                port: 443,
+                password: "horizxon.tech",
+                secure: true
+            },
+            {
+                host: "51.161.130.134",
+                port: 10449,
+                password: "madebytragic",
+                secure: false
+            },
+            {
+                host: "lavalink.lexnet.cc",
+                port: 2333,
+                password: "lexn3tl@val!nk",
+                secure: false
+            },
+            {
+                host: "the-net.loves-genshin.lol",
+                port: 2333,
+                password: "eternal",
+                secure: false
+            },
+            {
+                host: "lava-vn.meowsmp.net",
+                port: 2333,
+                password: "meowicelava",
+                secure: false
+            },
+            {
+                host: "lavalink.rudracloud.com",
+                port: 2333,
+                password: "RudraCloud.com",
+                secure: false
+            },
+            {
+                host: "lava.horizxon.tech",
+                port: 80,
+                password: "horizxon.tech",
+                secure: false
+            },
+            {
+                host: "54.38.198.24",
+                port: 88,
+                password: "stonemusicgay",
+                secure: false
+            },
+            {
+                host: "89.58.5.180",
+                port: 20906,
+                password: "reedrouxv4lavalink",
+                secure: false
+            },
+            {
+                host: "lava-ge.meowsmp.net",
+                port: 25579,
+                password: "meowicelava",
+                secure: false
+            },
+            {
+                host: "lava2.horizxon.tech",
+                port: 443,
+                password: "horizxon.tech",
+                secure: true
+            },
+            {
+                host: "lavalink.akshtt.is-a.dev",
+                port: 443,
+                password: "admin",
+                secure: true
+            },
+            {
+                host: "lava.akshat.tech",
+                port: 443,
+                password: "admin",
+                secure: true
+            },
+            {
+                host: "129.154.47.57",
+                port: 25997,
+                password: "admin",
+                secure: false
+            },
+            {
+                host: "hanmetaforce.ddns.net",
+                port: 7008,
+                password: "hanmetaforce",
+                secure: false
+            },
+            {
+                host: "node1.paradisehost.xyz",
+                port: 27185,
+                password: "Lavalinkhoster123",
+                secure: false
+            },
+            {
+                host: "hk.aarubot.xyz",
+                port: 57095,
+                password: "Aaru-the-cutiepie",
+                secure: false
+            },
+            {
+                host: "nyc01.jxshua.dev",
+                port: 4000,
+                password: "youshallnotpass",
+                secure: false
+            }
         ],
         send(id, payload) {
             const guild = client.guilds.cache.get(id);
