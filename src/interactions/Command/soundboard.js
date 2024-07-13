@@ -14,7 +14,7 @@ module.exports = {
                 .setName('help')
                 .setDescription('Get information about the soundboard category commands')
         )
-        
+
         // Windows Sounds
         .addSubcommandGroup((group) =>
             group
@@ -157,6 +157,16 @@ module.exports = {
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
+                        .setName('sepuh')
+                        .setDescription('Play the sepuh sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
+                        .setName('grupkontol')
+                        .setDescription('Play the grupkontol sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
                         .setName('missionfailed')
                         .setDescription('Play the missionfailed sound'),
                 )
@@ -225,4 +235,3 @@ module.exports = {
 };
 
 
- 
