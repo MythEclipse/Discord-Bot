@@ -1,0 +1,10 @@
+{
+  "rules": [
+    {
+      "condition": "always",
+      "commandType": "vscode",
+      "command": "studio-manager.openFile README.md 1",
+      "cmdArgs": []
+    }
+  ]
+}
