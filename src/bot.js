@@ -71,12 +71,25 @@ if (clientID && clientSecret) {
             //     password: process.env.LAVALINK_PASSWORD ,
             //     secure: Boolean(process.env.LAVALINK_SECURE) 
             // },
+            // {
+            //     host: "hk.aarubot.xyz",
+            //     port: 57095,
+            //     password: "Aaru-the-cutiepie",
+            //     secure: false
+            // },
             {
-                host: "hk.aarubot.xyz",
-                port: 57095,
-                password: "Aaru-the-cutiepie",
+                host : "203.175.11.148",
+                port: 2333,
+                password: "youshallnotpass",
                 secure: false
-            },
+            }
+            // {
+            //     "identifier": "Akshtt - Free",
+            //     "password": "admin",
+            //     "host": "lavalink.akshtt.is-a.dev",
+            //     "port": 443,
+            //     "secure": true
+            //   }
         ],
         send(id, payload) {
             const guild = client.guilds.cache.get(id);
