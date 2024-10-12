@@ -71,25 +71,25 @@ if (clientID && clientSecret) {
             //     password: process.env.LAVALINK_PASSWORD ,
             //     secure: Boolean(process.env.LAVALINK_SECURE) 
             // },
-            // {
-            //     host: "hk.aarubot.xyz",
-            //     port: 57095,
-            //     password: "Aaru-the-cutiepie",
-            //     secure: false
-            // },
             {
-                host : "203.175.11.148",
-                port: 2333,
+                host: '203.175.11.148',  // IP VPS kamu
+                port: 2333,              // Port Lavalink (default: 2333)
+                password: 'youshallnotpass',  // Password yang kamu set di Lavalink
+                secure: false
+            },
+            {
+                host: "lavalink.jirayu.net",
+                port: 2334,
                 password: "youshallnotpass",
                 secure: false
-            }
-            // {
-            //     "identifier": "Akshtt - Free",
-            //     "password": "admin",
-            //     "host": "lavalink.akshtt.is-a.dev",
-            //     "port": 443,
-            //     "secure": true
-            //   }
+            },
+            {
+                host: "nodev3.fypmoon.org",
+                port: 1164,
+                password: "fypmoon.org",
+                secure: false
+            },
+           
         ],
         send(id, payload) {
             const guild = client.guilds.cache.get(id);
@@ -113,11 +113,25 @@ if (clientID && clientSecret) {
             //     secure: Boolean(process.env.LAVALINK_SECURE) 
             // },
             {
-                host: "hk.aarubot.xyz",
-                port: 57095,
-                password: "Aaru-the-cutiepie",
+                host: '203.175.11.148',  // IP VPS kamu
+                port: 2333,              // Port Lavalink (default: 2333)
+                password: 'youshallnotpass',  // Password yang kamu set di Lavalink
                 secure: false
             },
+            {
+                host: "lavalink.jirayu.net",
+                port: 2334,
+                password: "youshallnotpass",
+                secure: false
+            },
+            {
+                host: "nodev3.fypmoon.org",
+                port: 1164,
+                password: "fypmoon.org",
+                secure: false
+            },
+           
+
         ],
         send(id, payload) {
             const guild = client.guilds.cache.get(id);
