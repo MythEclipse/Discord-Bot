@@ -71,12 +71,12 @@ if (clientID && clientSecret) {
             //     password: process.env.LAVALINK_PASSWORD ,
             //     secure: Boolean(process.env.LAVALINK_SECURE) 
             // },
-            {
-                host: '203.175.11.148',  // IP VPS kamu
-                port: 2333,              // Port Lavalink (default: 2333)
-                password: 'youshallnotpass',  // Password yang kamu set di Lavalink
-                secure: false
-            },
+            // {
+            //     host: '203.175.11.148',  // IP VPS kamu
+            //     port: 2333,              // Port Lavalink (default: 2333)
+            //     password: 'youshallnotpass',  // Password yang kamu set di Lavalink
+            //     secure: false
+            // },
             {
                 host: "lavalink.jirayu.net",
                 port: 2334,
@@ -112,12 +112,12 @@ if (clientID && clientSecret) {
             //     password: process.env.LAVALINK_PASSWORD ,
             //     secure: Boolean(process.env.LAVALINK_SECURE) 
             // },
-            {
-                host: '203.175.11.148',  // IP VPS kamu
-                port: 2333,              // Port Lavalink (default: 2333)
-                password: 'youshallnotpass',  // Password yang kamu set di Lavalink
-                secure: false
-            },
+            // {
+            //     host: '203.175.11.148',  // IP VPS kamu
+            //     port: 2333,              // Port Lavalink (default: 2333)
+            //     password: 'youshallnotpass',  // Password yang kamu set di Lavalink
+            //     secure: false
+            // },
             {
                 host: "lavalink.jirayu.net",
                 port: 2334,
