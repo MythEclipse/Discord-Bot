@@ -8,8 +8,8 @@ CONTAINER_NAME="mybotdc"
 echo "Building Docker image..."
 docker build -t $IMAGE_NAME .
 
-# Check if the container is already running
-if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+# Cek apakah container sudah ada
+if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
     echo "Stopping and removing existing container..."
     # Stop the running container
     docker stop $CONTAINER_NAME
@@ -19,8 +19,8 @@ else
     echo "No existing container found."
 fi
 
-# Run the new container
+# Jalankan container baru
 echo "Running new container..."
-docker run -d --name $CONTAINER_NAME $IMAGE_NAME
+docker run -d -p 3000:3000 --name $CONTAINER_NAME $IMAGE_NAME
 
 echo "Deployment completed!"
