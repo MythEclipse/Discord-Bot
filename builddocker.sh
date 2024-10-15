@@ -10,10 +10,6 @@ handle_error() {
     exit 1
 }
 
-# Build Docker image
-echo "Building Docker image..."
-docker build -t $IMAGE_NAME . || handle_error "Failed to build Docker image."
-
 # Check if the container already exists
 if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
     echo "Stopping and removing existing container..."
@@ -24,6 +20,18 @@ if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
 else
     echo "No existing container found."
 fi
+
+# Check if the image already exists
+if [ "$(docker images -q $IMAGE_NAME)" ]; then
+    echo "Removing existing Docker image..."
+    docker rmi $IMAGE_NAME || handle_error "Failed to remove Docker image."
+else
+    echo "No existing image found."
+fi
+
+# Build Docker image
+echo "Building Docker image..."
+docker build -t $IMAGE_NAME . || handle_error "Failed to build Docker image."
 
 # Run a new container
 echo "Running new container..."
