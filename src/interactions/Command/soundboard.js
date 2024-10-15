@@ -167,6 +167,11 @@ module.exports = {
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
+                        .setName('acumalaka')
+                        .setDescription('Play the acumalaka sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
                         .setName('missionfailed')
                         .setDescription('Play the missionfailed sound'),
                 )
