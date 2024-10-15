@@ -71,24 +71,24 @@ if (clientID && clientSecret) {
             //     password: process.env.LAVALINK_PASSWORD ,
             //     secure: Boolean(process.env.LAVALINK_SECURE) 
             // },
+            // {
+            //     host: '217.15.165.147',  // IP VPS kamu
+            //     port: 2333,              // Port Lavalink (default: 2333)
+            //     password: 'youshallnotpass',  // Password yang kamu set di Lavalink
+            //     secure: false
+            // },
             {
-                host: '217.15.165.147',  // IP VPS kamu
-                port: 2333,              // Port Lavalink (default: 2333)
-                password: 'youshallnotpass',  // Password yang kamu set di Lavalink
+                host: "lavalink.jirayu.net",
+                port: 2334,
+                password: "youshallnotpass",
                 secure: false
             },
-            // {
-            //     host: "lavalink.jirayu.net",
-            //     port: 2334,
-            //     password: "youshallnotpass",
-            //     secure: false
-            // },
-            // {
-            //     host: "nodev3.fypmoon.org",
-            //     port: 1164,
-            //     password: "fypmoon.org",
-            //     secure: false
-            // },
+            {
+                host: "nodev3.fypmoon.org",
+                port: 1164,
+                password: "fypmoon.org",
+                secure: false
+            },
            
         ],
         send(id, payload) {
@@ -112,24 +112,24 @@ if (clientID && clientSecret) {
             //     password: process.env.LAVALINK_PASSWORD ,
             //     secure: Boolean(process.env.LAVALINK_SECURE) 
             // },
+            // {
+            //     host: '217.15.165.147',  // IP VPS kamu
+            //     port: 2333,              // Port Lavalink (default: 2333)
+            //     password: 'youshallnotpass',  // Password yang kamu set di Lavalink
+            //     secure: false
+            // },
             {
-                host: '217.15.165.147',  // IP VPS kamu
-                port: 2333,              // Port Lavalink (default: 2333)
-                password: 'youshallnotpass',  // Password yang kamu set di Lavalink
+                host: "lavalink.jirayu.net",
+                port: 2334,
+                password: "youshallnotpass",
                 secure: false
             },
-            // {
-            //     host: "lavalink.jirayu.net",
-            //     port: 2334,
-            //     password: "youshallnotpass",
-            //     secure: false
-            // },
-            // {
-            //     host: "nodev3.fypmoon.org",
-            //     port: 1164,
-            //     password: "fypmoon.org",
-            //     secure: false
-            // },
+            {
+                host: "nodev3.fypmoon.org",
+                port: 1164,
+                password: "fypmoon.org",
+                secure: false
+            },
            
 
         ],
