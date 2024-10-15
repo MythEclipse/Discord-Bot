@@ -21,6 +21,6 @@ fi
 
 # Jalankan container baru
 echo "Running new container..."
-docker run -d -p 3000:3000 --name $CONTAINER_NAME $IMAGE_NAME
+docker run -d --name $CONTAINER_NAME $IMAGE_NAME
 
 echo "Deployment completed!"
