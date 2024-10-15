@@ -15,6 +15,8 @@ if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
     docker stop $CONTAINER_NAME
     # Remove the container
     docker rm $CONTAINER_NAME
+else
+    echo "No existing container found."
 fi
 
 # Run the new container
