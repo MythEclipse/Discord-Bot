@@ -72,7 +72,7 @@ if (clientID && clientSecret) {
             //     secure: Boolean(process.env.LAVALINK_SECURE) 
             // },
             {
-                host: '127.0.0.1',  // IP VPS kamu
+                host: '217.15.165.147',  // IP VPS kamu
                 port: 2333,              // Port Lavalink (default: 2333)
                 password: 'youshallnotpass',  // Password yang kamu set di Lavalink
                 secure: false
@@ -113,7 +113,7 @@ if (clientID && clientSecret) {
             //     secure: Boolean(process.env.LAVALINK_SECURE) 
             // },
             {
-                host: '127.0.0.1',  // IP VPS kamu
+                host: '217.15.165.147',  // IP VPS kamu
                 port: 2333,              // Port Lavalink (default: 2333)
                 password: 'youshallnotpass',  // Password yang kamu set di Lavalink
                 secure: false
