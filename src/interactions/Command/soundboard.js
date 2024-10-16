@@ -162,8 +162,8 @@ module.exports = {
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
-                        .setName('grupkontol')
-                        .setDescription('Play the grupkontol sound'),
+                        .setName('grupkntl')
+                        .setDescription('Play the grupkntl sound'),
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
@@ -172,13 +172,33 @@ module.exports = {
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
+                        .setName('ambatukam')
+                        .setDescription('Play the ambatukam sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
                         .setName('amogus')
                         .setDescription('Play the amogus sound'),
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
+                        .setName('mewing')
+                        .setDescription('Play the mewing sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
                         .setName('dingin')
                         .setDescription('Play the dingin sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
+                        .setName('ayo ayo ganyang')
+                        .setDescription('Play the ayo ayo ganyang sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
+                        .setName('tante')
+                        .setDescription('Play the tante sound'),
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
