@@ -172,6 +172,21 @@ module.exports = {
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
+                        .setName('amogus')
+                        .setDescription('Play the amogus sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
+                        .setName('dingin')
+                        .setDescription('Play the dingin sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
+                        .setName('chamber')
+                        .setDescription('Play the chamber sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
                         .setName('missionfailed')
                         .setDescription('Play the missionfailed sound'),
                 )
