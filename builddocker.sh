@@ -29,9 +29,9 @@ else
     echo "No existing image found."
 fi
 
-# Build Docker image
-echo "Building Docker image..."
-docker build -t $IMAGE_NAME . || handle_error "Failed to build Docker image."
+# Build Docker image without cache
+echo "Building Docker image with no cache..."
+docker build --no-cache -t $IMAGE_NAME . || handle_error "Failed to build Docker image."
 
 # Run a new container
 echo "Running new container..."
