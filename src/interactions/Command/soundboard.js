@@ -192,11 +192,6 @@ module.exports = {
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
-                        .setName('ayo ayo ganyang')
-                        .setDescription('Play the ayo ayo ganyang sound'),
-                )
-                .addSubcommand((subcommand) =>
-                    subcommand
                         .setName('tante')
                         .setDescription('Play the tante sound'),
                 )
