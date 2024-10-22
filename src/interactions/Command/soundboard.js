@@ -147,16 +147,6 @@ module.exports = {
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
-                        .setName('jeff')
-                        .setDescription('Play the jeff sound'),
-                )
-                .addSubcommand((subcommand) =>
-                    subcommand
-                        .setName('lambo')
-                        .setDescription('Play the lambo sound'),
-                )
-                .addSubcommand((subcommand) =>
-                    subcommand
                         .setName('sepuh')
                         .setDescription('Play the sepuh sound'),
                 )
