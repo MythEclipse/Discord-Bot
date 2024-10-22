@@ -172,8 +172,23 @@ module.exports = {
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
+                        .setName('ayoayo')
+                        .setDescription('Play the ayoayo sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
+                        .setName('anomali')
+                        .setDescription('Play the Anomali sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
                         .setName('mewing')
                         .setDescription('Play the mewing sound'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
+                        .setName('solid')
+                        .setDescription('Play the solid sound'),
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
