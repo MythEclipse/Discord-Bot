@@ -36,7 +36,7 @@ remove_old_services() {
 # Fungsi untuk menghapus image yang tidak digunakan
 remove_unused_images() {
     log "🗑️ Menghapus image Docker yang tidak digunakan..."
-    docker image prune -f
+    docker image prune -a -f
     if [ $? -eq 0 ]; then
         log "✅ Image yang tidak digunakan berhasil dihapus!"
     else

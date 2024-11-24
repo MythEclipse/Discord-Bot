@@ -74,15 +74,15 @@ if (clientID && clientSecret) {
             {
                 host: '217.15.165.147',  // Lavalink container host
                 port: 2333,         // Port Lavalink (default: 2333)
-                password: 'your_password',  // Password set in Lavalink environment
+                password: 'youshallnotpass',  // Password set in Lavalink environment
                 secure: false
             },
-            // {
-            //     host: "lavalink.jirayu.net",
-            //     port: 2334,
-            //     password: "youshallnotpass",
-            //     secure: false
-            // },
+            {
+                host: "lavalink.jirayu.net",
+                port: 2334,
+                password: "youshallnotpass",
+                secure: false
+            },
             // {
             //     host: "nodev3.fypmoon.org",
             //     port: 1164,
@@ -115,15 +115,15 @@ if (clientID && clientSecret) {
             {
                 host: '217.15.165.147',  // Lavalink container host
                 port: 2333,         // Port Lavalink (default: 2333)
-                password: 'your_password',  // Password set in Lavalink environment
+                password: 'youshallnotpass',  // Password set in Lavalink environment
                 secure: false
             },
-            // {
-            //     host: "lavalink.jirayu.net",
-            //     port: 2334,
-            //     password: "youshallnotpass",
-            //     secure: false
-            // },
+            {
+                host: "lavalink.jirayu.net",
+                port: 2334,
+                password: "youshallnotpass",
+                secure: false
+            },
             // {
             //     host: "nodev3.fypmoon.org",
             //     port: 1164,

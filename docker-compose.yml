@@ -9,14 +9,12 @@ services:
       - lavalink
 
   lavalink:
-    image: ghcr.io/lavalink-devs/lavalink:4
+    image: ghcr.io/lavalink-devs/lavalink:3
     container_name: lavalink
     restart: always
     ports:
       - "2333:2333"
+    volumes:
+      - ./lavalink/application.yml:/opt/Lavalink/application.yml
     environment:
       - SERVER_PORT=2333
-      - LAVALINK_SERVER_PASSWORD=your_password
-      - LAVALINK_SOURCES=youtube,soundcloud,bandsintown,twitch,vimeo
-      - LAVALINK_BUFFER_DURATION_MS=400
-      - LAVALINK_YOUTUBE_DL_ENABLED=true
