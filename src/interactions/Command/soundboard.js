@@ -167,6 +167,11 @@ module.exports = {
                 )
                 .addSubcommand((subcommand) =>
                     subcommand
+                        .setName('abangsaleh')
+                        .setDescription('Teh Tarik Satu'),
+                )
+                .addSubcommand((subcommand) =>
+                    subcommand
                         .setName('amogus')
                         .setDescription('Play the amogus sound'),
                 )
