@@ -13,7 +13,7 @@ module.exports = (client) => {
 
     client.startStream = async function (url) {
         const resource = Voice.createAudioResource(url, {
-            inputType: Voice.StreamType.Arbitrary,
+            inputType: Voice.StreamType.Opus,
         });
 
         player.play(resource);
@@ -76,7 +76,7 @@ module.exports = (client) => {
     client.on(Discord.Events.ClientReady, async () => {
         client.startStream(process.env.RADIO || "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO538");
         
-        Schema.find(async (err, data) => {
+        Schema.find().then(async (data) => {
             if (data) {
                 for (var i = 0; i < data.length; i++) {
                     try {

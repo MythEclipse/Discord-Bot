@@ -1,32 +1,28 @@
-const Discord = require('discord.js');
-const fs = require('fs');
+const Discord = require("discord.js");
+const fs = require("fs");
 
-const { Manager } = require("erela.js");
-const Spotify = require("erela.js-spotify");
-const Facebook = require("erela.js-facebook");
-const Deezer = require("erela.js-deezer");
-const AppleMusic = require("erela.js-apple");
+const { Connectors } = require("shoukaku");
+const { Kazagumo } = require("kazagumo");
+const Spotify = require('kazagumo-spotify');
 
 // Discord client
+/**
+ * @type {import("./typings.d").Client}
+ */
 const client = new Discord.Client({
     allowedMentions: {
-        parse: [
-            'users',
-            'roles'
-        ],
-        repliedUser: true
+        parse: ["users", "roles"],
+        repliedUser: true,
     },
     autoReconnect: true,
-    disabledEvents: [
-        "TYPING_START"
-    ],
+    disabledEvents: ["TYPING_START"],
     partials: [
         Discord.Partials.Channel,
         Discord.Partials.GuildMember,
         Discord.Partials.Message,
         Discord.Partials.Reaction,
         Discord.Partials.User,
-        Discord.Partials.GuildScheduledEvent
+        Discord.Partials.GuildScheduledEvent,
     ],
     intents: [
         Discord.GatewayIntentBits.Guilds,
@@ -44,117 +40,93 @@ const client = new Discord.Client({
         Discord.GatewayIntentBits.DirectMessageReactions,
         Discord.GatewayIntentBits.DirectMessageTyping,
         Discord.GatewayIntentBits.GuildScheduledEvents,
-        Discord.GatewayIntentBits.MessageContent
+        Discord.GatewayIntentBits.MessageContent,
     ],
-    restTimeOffset: 0
+    restTimeOffset: 0,
 });
 
-
-const clientID = process.env.SPOTIFY_CLIENT_ID;
-const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-if (clientID && clientSecret) {
-    // Lavalink client
-    client.player = new Manager({
-        plugins: [
-            new AppleMusic(),
-            new Deezer(),
-            new Facebook(),
-            new Spotify({
-                clientID,
-                clientSecret,
-            })
-        ],
-        nodes: [
-            // {
-            //     host: process.env.LAVALINK_HOST,
-            //     port: parseInt(process.env.LAVALINK_PORT),
-            //     password: process.env.LAVALINK_PASSWORD ,
-            //     secure: Boolean(process.env.LAVALINK_SECURE) 
-            // },
-            {
-                host: '217.15.165.147',  // Lavalink container host
-                port: 2333,         // Port Lavalink (default: 2333)
-                password: 'youshallnotpass',  // Password set in Lavalink environment
-                secure: false
-            },
-            {
-                host: "lavalink.jirayu.net",
-                port: 2334,
-                password: "youshallnotpass",
-                secure: false
-            },
-            // {
-            //     host: "nodev3.fypmoon.org",
-            //     port: 1164,
-            //     password: "fypmoon.org",
-            //     secure: false
-            // },
-           
-        ],
-        send(id, payload) {
-            const guild = client.guilds.cache.get(id);
+client.player = new Kazagumo(
+    {
+        defaultSearchEngine: "youtube",
+        send: (guildId, payload) => {
+            const guild = client.guilds.cache.get(guildId);
             if (guild) guild.shard.send(payload);
         },
-    })
+        plugins: process.env.SPOTIFY_CLIENT_ID ? [new Spotify({
+            clientId: process.env.SPOTIFY_CLIENT_ID,
+            clientSecret: process.env.SPOTIFY_CLIENT_SECRET
+        })] : []
+    },
+    new Connectors.DiscordJS(client),
+    [
+        // {
+        //     host: process.env.LAVALINK_HOST,
+        //     port: parseInt(process.env.LAVALINK_PORT),
+        //     password: process.env.LAVALINK_PASSWORD ,
+        //     secure: Boolean(process.env.LAVALINK_SECURE)
+        // },
+        {
+            name: "Lavalink 1",
+            url: "217.15.165.147:2333", // Lavalink container host
+            auth: "youshallnotpass", // Password set in Lavalink environment
+            secure: false,
+        },
+        {
+            name: "Lavalink 2",
+            url: "lavalink.jirayu.net:2334",
+            auth: "youshallnotpass",
+            secure: false,
+        },
+        // {
+        //     host: "nodev3.fypmoon.org",
+        //     port: 1164,
+        //     password: "fypmoon.org",
+        //     secure: false
+        // },
+    ],
+    {
+        resume: true,
+        resumeTimeout: 30,
+        reconnectTries: 5,
+    },
+);
 
-} else {
-    // Lavalink client
-    client.player = new Manager({
-        plugins: [
-            new AppleMusic(),
-            new Deezer(),
-            new Facebook(),
-        ],
-        nodes: [
-            // {
-            //     host: process.env.LAVALINK_HOST,
-            //     port: parseInt(process.env.LAVALINK_PORT),
-            //     password: process.env.LAVALINK_PASSWORD ,
-            //     secure: Boolean(process.env.LAVALINK_SECURE) 
-            // },
-            {
-                host: '217.15.165.147',  // Lavalink container host
-                port: 2333,         // Port Lavalink (default: 2333)
-                password: 'youshallnotpass',  // Password set in Lavalink environment
-                secure: false
-            },
-            {
-                host: "lavalink.jirayu.net",
-                port: 2334,
-                password: "youshallnotpass",
-                secure: false
-            },
-            // {
-            //     host: "nodev3.fypmoon.org",
-            //     port: 1164,
-            //     password: "fypmoon.org",
-            //     secure: false
-            // },
-           
-
-        ],
-        send(id, payload) {
-            const guild = client.guilds.cache.get(id);
-            if (guild) guild.shard.send(payload);
-        }
-    })
-}
-const events = fs.readdirSync(`./src/events/music`).filter(files => files.endsWith('.js'));
-
-for (const file of events) {
-    const event = require(`./events/music/${file}`);
-    client.player.on(file.split(".")[0], event.bind(null, client)).setMaxListeners(0);
+const musicEvents = {
+    playerStart: require("./music/trackStart"),
+    playerEmpty: require("./music/queueEnd"),
+    playerMoved: require("./music/playerMove"),
+    playerClosed: require("./music/playerDisconnect"),
 };
+for (const [name, event] of Object.entries(musicEvents)) {
+    client.player.on(name, event.bind(null, client));
+}
+client.player.shoukaku.on("ready", require("./music/ready").bind(null, client));
+client.player.shoukaku.on("error", require("./music/error").bind(null, client));
 
 // Connect to database
 require("./database/connect")();
 
 // Client settings
-client.config = require('./config/bot');
-client.changelogs = require('./config/changelogs');
+client.config = require("./config/bot");
+client.changelogs = require("./config/changelogs");
 client.emotes = require("./config/emojis.json");
 client.webhooks = require("./config/webhooks.json");
-const webHooksArray = ['startLogs', 'shardLogs', 'errorLogs', 'dmLogs', 'voiceLogs', 'serverLogs', 'serverLogs2', 'commandLogs', 'consoleLogs', 'warnLogs', 'voiceErrorLogs', 'creditLogs', 'evalLogs', 'interactionLogs'];
+const webHooksArray = [
+    "startLogs",
+    "shardLogs",
+    "errorLogs",
+    "dmLogs",
+    "voiceLogs",
+    "serverLogs",
+    "serverLogs2",
+    "commandLogs",
+    "consoleLogs",
+    "warnLogs",
+    "voiceErrorLogs",
+    "creditLogs",
+    "evalLogs",
+    "interactionLogs",
+];
 // Check if .env webhook_id and webhook_token are set
 if (process.env.WEBHOOK_ID && process.env.WEBHOOK_TOKEN) {
     for (const webhookName of webHooksArray) {
@@ -165,7 +137,6 @@ if (process.env.WEBHOOK_ID && process.env.WEBHOOK_TOKEN) {
 
 client.commands = new Discord.Collection();
 client.playerManager = new Map();
-client.triviaManager = new Map();
 client.queue = new Map();
 
 // Webhooks
@@ -180,7 +151,7 @@ const warnLogs = new Discord.WebhookClient({
 });
 
 // Load handlers
-fs.readdirSync('./src/handlers').forEach((dir) => {
+fs.readdirSync("./src/handlers").forEach((dir) => {
     fs.readdirSync(`./src/handlers/${dir}`).forEach((handler) => {
         require(`./handlers/${dir}/${handler}`)(client);
     });
@@ -188,11 +159,16 @@ fs.readdirSync('./src/handlers').forEach((dir) => {
 
 client.login(process.env.DISCORD_TOKEN);
 
-process.on('unhandledRejection', error => {
-    console.error('Unhandled promise rejection:', error);
-    if (error) if (error.length > 950) error = error.slice(0, 950) + '... view console for details';
-    if (error.stack) if (error.stack.length > 950) error.stack = error.stack.slice(0, 950) + '... view console for details';
-    if (!error.stack) return
+process.on("unhandledRejection", (error) => {
+    console.error("Unhandled promise rejection:", error);
+    if (error)
+        if (error.length > 950)
+            error = error.slice(0, 950) + "... view console for details";
+    if (error.stack)
+        if (error.stack.length > 950)
+            error.stack =
+                error.stack.slice(0, 950) + "... view console for details";
+    if (!error.stack) return;
     const embed = new Discord.EmbedBuilder()
         .setTitle(`🚨・Unhandled promise rejection`)
         .addFields([
@@ -202,20 +178,24 @@ process.on('unhandledRejection', error => {
             },
             {
                 name: "Stack error",
-                value: error.stack ? Discord.codeBlock(error.stack) : "No stack error",
-            }
+                value: error.stack
+                    ? Discord.codeBlock(error.stack)
+                    : "No stack error",
+            },
         ])
-        .setColor(client.config.colors.normal)
-    consoleLogs.send({
-        username: 'Bot Logs',
-        embeds: [embed],
-    }).catch(() => {
-        console.log('Error sending unhandledRejection to webhook')
-        console.log(error)
-    })
+        .setColor(client.config.colors.normal);
+    consoleLogs
+        .send({
+            username: "Bot Logs",
+            embeds: [embed],
+        })
+        .catch(() => {
+            console.log("Error sending unhandledRejection to webhook");
+            console.log(error);
+        });
 });
 
-process.on('warning', warn => {
+process.on("warning", (warn) => {
     console.warn("Warning:", warn);
     const embed = new Discord.EmbedBuilder()
         .setTitle(`🚨・New warning found`)
@@ -225,21 +205,28 @@ process.on('warning', warn => {
                 value: `\`\`\`${warn}\`\`\``,
             },
         ])
-        .setColor(client.config.colors.normal)
-    warnLogs.send({
-        username: 'Bot Logs',
-        embeds: [embed],
-    }).catch(() => {
-        console.log('Error sending warning to webhook')
-        console.log(warn)
-    })
+        .setColor(client.config.colors.normal);
+    warnLogs
+        .send({
+            username: "Bot Logs",
+            embeds: [embed],
+        })
+        .catch(() => {
+            console.log("Error sending warning to webhook");
+            console.log(warn);
+        });
 });
 
-client.on(Discord.ShardEvents.Error, error => {
-    console.log(error)
-    if (error) if (error.length > 950) error = error.slice(0, 950) + '... view console for details';
-    if (error.stack) if (error.stack.length > 950) error.stack = error.stack.slice(0, 950) + '... view console for details';
-    if (!error.stack) return
+client.on(Discord.ShardEvents.Error, (error) => {
+    console.log(error);
+    if (error)
+        if (error.length > 950)
+            error = error.slice(0, 950) + "... view console for details";
+    if (error.stack)
+        if (error.stack.length > 950)
+            error.stack =
+                error.stack.slice(0, 950) + "... view console for details";
+    if (!error.stack) return;
     const embed = new Discord.EmbedBuilder()
         .setTitle(`🚨・A websocket connection encountered an error`)
         .addFields([
@@ -250,11 +237,11 @@ client.on(Discord.ShardEvents.Error, error => {
             {
                 name: `Stack error`,
                 value: `\`\`\`${error.stack}\`\`\``,
-            }
+            },
         ])
-        .setColor(client.config.colors.normal)
+        .setColor(client.config.colors.normal);
     consoleLogs.send({
-        username: 'Bot Logs',
+        username: "Bot Logs",
         embeds: [embed],
     });
 });

@@ -1,19 +1,24 @@
-FROM node:18-buster
+FROM node:24-bookworm
 
-# Set the working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# Install native system dependencies required by Cairo/Canvas
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libcairo2-dev \
+    libpango1.0-dev \
+    libjpeg-dev \
+    libgif-dev \
+    librsvg2-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy dependency manifests first for optimal Docker layer caching
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install --production --legacy-peer-deps
+# Clean cache and compile native bindings directly in the container environment
+RUN npm ci && npm rebuild canvas --build-from-source
 
-# Copy the rest of the application code
+# Copy remaining source files
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 3000
-
-# Start the application
 CMD ["npm", "start"]
