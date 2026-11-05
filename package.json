@@ -42,7 +42,7 @@
     "deepmerge-ts": "^8.0.1",
     "discord-image-generation": "^1.4.23",
     "discord.js": "^14.8.0",
-    "dompurify": "^3.4.14",
+    "dompurify": "^3.4.17",
     "dotenv": "^17.4.2",
     "ffmpeg-static": "^5.3.0",
     "figlet": "^1.5.2",
@@ -77,9 +77,9 @@
   },
   "allowScripts": {
     "@discordjs/opus@0.10.0": true,
-    "ffmpeg-static@5.3.0": true,
-    "zlib-sync@0.1.10": true,
+    "canvacord@5.4.10": true,
     "canvas@3.2.3": true,
-    "canvacord@5.4.10": true
+    "ffmpeg-static@5.3.0": true,
+    "zlib-sync@0.1.10": true
   }
 }
